@@ -6,12 +6,20 @@ const Teachers = require("../models/teachers.model");
 
 router.get("/", async (req, res) => {
   await Lessons.findAll({
+    limit: 5,
+    order: [["id", "ASC"]],
     include: [
       {
         model: Students,
+        through:{
+            attributes:['visit']
+        }
       },
       {
         model: Teachers,
+        through:{
+            attributes:{exclude:['lesson_id', 'teacher_id']}
+        }
       },
     ],
   })
@@ -19,6 +27,9 @@ router.get("/", async (req, res) => {
     .catch(console.error);
 });
 
+router.get("/l", (req, res) => {
+  Lessons.findAll({}).then((lesons) => res.json(lesons));
+});
 router.get("/s", (req, res) => {
   Students.findAll().then((students) => res.json(students));
 });
