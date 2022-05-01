@@ -37,7 +37,7 @@ const Lessons = sequelize.define(
     status: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: "0",
+      defaultValue: "0", 
       comment: null,
       primaryKey: false,
       field: "status",
