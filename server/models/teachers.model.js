@@ -1,8 +1,10 @@
 const sequelize = require("../db");
 const { DataTypes } = require("sequelize");
 const Lesson_Teachers = require("./lesson_teachers");
-const Lesson_Students = require("./lesson_students");
 const Lessons = require("./lessons.model");
+const Students = require("./students.model");
+const Lesson_Students = require("./lesson_students");
+
 
 const Teachers = sequelize.define(
   "teachers",
@@ -27,7 +29,9 @@ const Teachers = sequelize.define(
     }
   },
   { timestamps: false },
-
 );
+
+// Lessons.belongsToMany(Teachers,{through:Lesson_Teachers, foreignKey:'teacher_id'})
+// Teachers.belongsToMany(Lessons, {through:Lesson_Teachers, foreignKey:'lesson_id'})
 
 module.exports = Teachers;
