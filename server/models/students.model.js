@@ -7,11 +7,21 @@ const Students = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: null,
+      comment: null,
       primaryKey: true,
+      field: "id",
+      autoIncrement: true
     },
     name: {
-      type: DataTypes.STRING,
-    },
+      type: DataTypes.CHAR(10),
+      allowNull: true,
+      defaultValue: null,
+      comment: null,
+      primaryKey: false,
+      field: "name",
+      autoIncrement: false
+    }
   },
   { timestamps: false }
 );
