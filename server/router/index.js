@@ -7,7 +7,13 @@ const Students = require('../models/students.model');
 const Teachers = require("../models/teachers.model");
 
 router.get('/', (req, res)=>{
-    Lessons.findAll().then(lessons => res.json(lessons))
+    Lessons.findAll(
+        {
+            include:[{
+                model:Students
+             }]
+        }
+    ).then(lessons => res.json(lessons))
 })
 router.get('/s', (req, res)=>{
     Students.findAll().then(students => res.json(students))
@@ -15,9 +21,7 @@ router.get('/s', (req, res)=>{
 router.get('/t', (req, res)=>{
     Teachers.findAll(
 {
-    include:[{
-       model:Lesson_Students
-    }]
+   
 }
     ).then(teachers => res.json(teachers))
 })
